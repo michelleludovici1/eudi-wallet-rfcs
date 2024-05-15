@@ -16,9 +16,9 @@
 - [EWC RFC005: Issue Legal Person Identification Data (LPID) - v1.0](#ewc-rfc005-issue-legal-person-identification-data-pid---v001)
 - [1.0	Summary](#10summary)
 - [2.0	Motivation](#20motivation)
-- [3.0 LPID Issuance Process](#30lpid-issiance-process)
+- [3.0 LPID Issuance Process](#30lpid-issuance-process)
 - [4.0 LPID Issuance to a wallet instance](#40lpid-issuance-to-a-wallet-instance)
-	- [4.1 LPID Issuance Process](#40lpid-issiance-process)
+	- [4.1 LPID Issuance Process](#40lpid-issuance-process)
 - [5.0	Messages](#50messages)
   	- [5.1 Discover request](#53-discover-request)
   	- [5.2 Discover response](#54-discover-response)
@@ -64,26 +64,26 @@ The LPID issuance process is implemented by PID providers according to national 
 4. **Status:** The status of the legal person must be verified. These states are not yet regulated, but at the very least, the legal person for which an LPID is requested must be registered at a business register.
 
 The issuance process can either start in:
-1. a wallet application, the grahical user interface of the wallet *or*
+1. a wallet application, the graphical user interface of the wallet *or*
 2. the eService of the PID provider.
 
-The first approach requires the wallet provider to implement support for a lookup of all PID Providers. It also requires the User (natural person or legal person, as defined in eIDAS2 [8]) to have a wallet solution [8] that includes a wallet application. Wallet applications are optional and not all legal persons may opt for a wallet solution that includes a graphical user interface. An end user representing the legal person chooses an PID Provider in the wallet application to apply for/request an LPID from. The wallet application then redirects the end user to the eService of the PID Pprovider for the issuance process. After completeing the eService procedure, the natural person is redirected back to the wallet application from where a offer reqest is initiated.
+The first approach requires the wallet provider to implement support for a lookup of all PID Providers. It also requires the User (natural person or legal person, as defined in eIDAS2 [8]) to have a wallet solution [8] that includes a wallet application. Wallet applications are optional and not all legal persons may opt for a wallet solution that includes a graphical user interface. An end user representing the legal person chooses an PID Provider in the wallet application to apply for/request an LPID from. The wallet application then redirects the end user to the eService of the PID Pprovider for the issuance process. After completing the eService procedure, the natural person is redirected back to the wallet application from where a offer request is initiated.
 
-The second approach has no dependency to the implementaion of the wallet or the wallet solution of the User. An end user representing the legal person goes directly to the eService of the PID Provider to apply for/request an LPID. After completeing the eService procedure, the PID Provider initiates a offer response to the wallet instance of the legal person which endpoint the representative of the lagal person supplied. The endpoint can be a url or a DID for instance. All communication between wallets is done in the backend.
+The second approach has no dependency to the implementation of the wallet or the wallet solution of the User. An end user representing the legal person goes directly to the eService of the PID Provider to apply for/request an LPID. After completing the eService procedure, the PID Provider initiates a offer response to the wallet instance of the legal person which endpoint the representative of the legal person supplied. The endpoint can be a url or a DID for instance. All communication between wallets is done in the backend.
 
-Once an application/request has been approved in the LPID process of a PID Provider, the creation and issuance of the LPID is done in the wallet of the PID provider. The transctions between the wallets of PID Provider and legal person are described in the chapter below.
+Once an application/request has been approved in the LPID process of a PID Provider, the creation and issuance of the LPID is done in the wallet of the PID provider. The transactions between the wallets of PID Provider and legal person are described in the chapter below.
 
 # 4.0 LPID issuance to a wallet instance
 
-In order to issue an LPID from an issuer wallet instance, som preliminary steps must be completed.
+In order to issue an LPID from an issuer wallet instance, some preliminary steps must be completed.
 
 **Preliminary Steps for LPID Issuance:**
 
-5. **Wallet Conformity:** Before initiating the LPID issuance, the user's wallet must be confirmed to comply with established standards. This includes possessing an wallet instance attestaion (WIA), wallet trust evidence (WTE), both issued by the wallet provider [ARF], and PID issued by a PID Provider.
+5. **Wallet Conformity:** Before initiating the LPID issuance, the user's wallet must be confirmed to comply with established standards. This includes possessing an wallet instance attestation (WIA), wallet trust evidence (WTE), both issued by the wallet provider [ARF], and PID issued by a PID Provider.
 
 6. **Trust Anchor Verification:** The issuing entity's authorization within the Trust Anchor framework must be validated, ensuring it is listed as an authorized actor, thus guaranteeing that only verified entities can issue the LPID.
 
-7. **Data Acquisition from Reliable Sources:** Data used for LPID generation must be supplied from authentic sorces, such as business registries, ensuring the LPID credentials are based on accurate and up-to-date information. In use cases where the PID provider differs from the authentic source the PID Provider must have access to information in the authentic source.
+7. **Data Acquisition from Reliable Sources:** Data used for LPID generation must be supplied from authentic sources, such as business registries, ensuring the LPID credentials are based on accurate and up-to-date information. In use cases where the PID provider differs from the authentic source the PID Provider must have access to information in the authentic source.
 
 ## 4.1 Issuance
 
@@ -91,7 +91,7 @@ The LPID issuance process starts with a natural person applying for, or requesti
 
 The LPID issuance follows detailed steps starting from the discovery of issuer capabilities, through authentication and authorization, leading to the actual credential issuance. The process is adapted to include the preliminary steps, ensuring a secure and compliant issuance path.
 
-The sequence diagram below descibes the second option, as outlined in the chapter above, where an end user enters the eService of a PID provider directly, without use of a wallet application. For the first flow, the transactions are in a slightly different order and a discovery of the PID providers offers must be done as well, GET: /.well-known/openid-credential-issuer.
+The sequence diagram below describes the second option, as outlined in the chapter above, where an end user enters the eService of a PID provider directly, without use of a wallet application. For the first flow, the transactions are in a slightly different order and a discovery of the PID providers offers must be done as well, GET: /.well-known/openid-credential-issuer.
 
 ```mermaid
 ---
@@ -151,9 +151,9 @@ sequenceDiagram
     end
     alt Authorization flow
     CW->>AS: Authorization request
-    AS-->>CW: Athorization response
+    AS-->>CW: Authorization response
     CW->>AS: Token request
-    AS-->>CW: Acess Token
+    AS-->>CW: Access Token
     end
     CW->>PPW: LPID Credential request (access token)
     
@@ -184,25 +184,25 @@ Not included in the diagram is the revocation information that must be published
 2. The application/request for an LPID in the eService has been approved after verification checks described in chapter 3 above. The PID provider requests the PID Provider wallet to create and send an LPID. The request sent includes the information and schema needed for credential construction and the endpoint for the Client wallet. The endpoint is either given by the natural person or included in the redirection url from the wallet application.
 3. The PID provider wallet requests the Client wallet for WIA, WTE, PID using the endpoint either submitted by the natural person in the first step or by information in the redirect url if the LPID process started in a wallet application with a redirect.
 4. Client wallet returns presentations of WTE, WIA, (PID).
-5. PID provider wallet requests information from VDR for verifiacation and validation.
+5. PID provider wallet requests information from VDR for verification and validation.
 6. VDR returns requested information.
 7. PID provider wallet verifies and validates presentations of and issuer of WTE and WIA (and PID).
 ALT - Client wallet is Valid
 8. wallet creates LPID **offer response**.
 9. Wallet sends LPID **offer response** to Client wallet.
 10. Client wallet requests WIA and PID from PID provider wallet.
-11. PID provider wallet returs presentations of PID and WIA.
-12. Client wallet requests information from VDR for verifiacation and validation.
+11. PID provider wallet returns presentations of PID and WIA.
+12. Client wallet requests information from VDR for verification and validation.
 13. VDR returns requested information.
-14. Client wallet verifies and validates presentations of and issuer of WTE and WIA (and PID).
+14. Client wallet verifies and validates presentations and the issuer of WTE and WIA (and PID).
 ALT - Preauthorized flow
-15. Client wallet requests token from autorization server.
+15. Client wallet requests token from authorization server.
 16. Authorization server return access token.
 END ALT - Preauthorized flow
 ALT - Authorization flow
 17. Client wallet requests access from Authorization server.
-18. Authorization server returns acess response.
-29. Client wallet requests access from autorization server.
+18. Authorization server returns access response.
+29. Client wallet requests access from authorization server.
 20. Authorization server return access token.
 END ALT - Authorization flow
 21. Client wallet requests LPID credential, including access token, from PID Provider wallet.
